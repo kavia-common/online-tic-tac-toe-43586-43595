@@ -1,8 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders Tic Tac Toe scoreboard and board', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  // Scoreboard contains X, O, Draws
+  expect(screen.getByText(/X/)).toBeInTheDocument();
+  expect(screen.getByText(/O/)).toBeInTheDocument();
+  expect(screen.getByText(/Draws/)).toBeInTheDocument();
+  // 3x3 board renders 9 buttons
+  const cells = screen.getAllByRole('gridcell');
+  expect(cells).toHaveLength(9);
 });
